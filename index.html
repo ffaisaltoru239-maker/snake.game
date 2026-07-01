@@ -3,82 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snake Game</title>
+<title>Snake Rush</title>
 
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-background:#111;
-font-family:Arial;
+}
+
+#menu{
+text-align:center;
+color:white;
+}
+
+h1{
+font-size:42px;
+margin-bottom:20px;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a34a;
 }
 
 canvas{
-background:#222;
-border:4px solid #00ff66;
+display:none;
+background:#111827;
+border:4px solid #22c55e;
+border-radius:12px;
 }
 </style>
-
 </head>
+
 <body>
+
+<div id="menu">
+<h1>🐍 Snake Rush</h1>
+<button onclick="startGame()">Play</button>
+</div>
 
 <canvas id="game" width="400" height="400"></canvas>
 
 <script>
-
-const canvas=document.getElementById("game");
-const ctx=canvas.getContext("2d");
-
-let snake=[{x:200,y:200}];
-let food={x:100,y:100};
-let dx=20;
-let dy=0;
-
-document.addEventListener("keydown",e=>{
-if(e.key=="ArrowUp"){dx=0;dy=-20;}
-if(e.key=="ArrowDown"){dx=0;dy=20;}
-if(e.key=="ArrowLeft"){dx=-20;dy=0;}
-if(e.key=="ArrowRight"){dx=20;dy=0;}
-});
-
-function draw(){
-
-ctx.fillStyle="#222";
-ctx.fillRect(0,0,400,400);
-
-ctx.fillStyle="red";
-ctx.fillRect(food.x,food.y,20,20);
-
-ctx.fillStyle="lime";
-snake.forEach(s=>{
-ctx.fillRect(s.x,s.y,20,20);
-});
-
-let head={x:snake[0].x+dx,y:snake[0].y+dy};
-
-snake.unshift(head);
-
-if(head.x==food.x && head.y==food.y){
-
-food.x=Math.floor(Math.random()*20)*20;
-food.y=Math.floor(Math.random()*20)*20;
-
-}else{
-snake.pop();
+function startGame(){
+document.getElementById("menu").style.display="none";
+document.getElementById("game").style.display="block";
+alert("Game engine will be added in Step 2");
 }
-
-if(head.x<0||head.x>=400||head.y<0||head.y>=400){
-alert("Game Over");
-location.reload();
-}
-
-}
-
-setInterval(draw,150);
-
 </script>
 
 </body>
